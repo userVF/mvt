@@ -1,0 +1,9 @@
+build/client/assets/*
+build/client/html/*
+build/server/*
+db/etc.sql
+db/info.txt
+info
+node_modules
+server/log
+pm2.config.json
