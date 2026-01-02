@@ -17,7 +17,7 @@ const borderInterpolate = [
 const roadBorderColor = '#ccc'
 const labelColor = '#333'
 
-const getTileLayers = lang => [
+const getTileLayers = () => [
   {//background
     'id': 'background',
     'type': 'background',
