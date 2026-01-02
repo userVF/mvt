@@ -22,7 +22,11 @@ Create triggers
   ```bash
   psql -v ON_ERROR_STOP=ON -U tileset < db/triggers.sql
   ```
-Replace `<YOUR_DB_PASSWORD>` and `<YOUR_DB_HOST>` placeholders in `.env` file with your own values.
+- Replace `<YOUR_DB_HOST>` placeholder in `.env` file with your own value.
+- Replace `<YOUR DB_PASSWORD>` placeholder in `.env` file with your own value, if your database setting requires password authentication and run:
+```bash
+psql -v ON_ERROR_STOP=ON -U tileset -c "ALTER ROLE tileset WITH PASSWORD '<YOUR DB_PASSWORD>'"
+```
 
 The data in the database is stored as follows:   
 <img width="1058" height="595" alt="db" src="https://github.com/user-attachments/assets/2a0d9c5e-69c5-441f-a751-5d925e06678a" />
@@ -50,7 +54,7 @@ Run static server (in new terminal tab)
 ```bash
 node ./server/static-server.js
 ```
-Open in your browser
+Open in a browser
 ```bash
 http://localhost:3000
 ```
@@ -60,7 +64,7 @@ The map should looks like this:
 ## Changed tiles
 Changes in the data are tracked. Based on a specific tileset and zoom range of a layer, the tiles impacted by these changes are calculated.
 
-The tiles that affected by changes:
+The tiles that affected by data changes:
 <img width="1024" height="597" alt="tile-changes" src="https://github.com/user-attachments/assets/e96e3837-69e1-40d7-88e9-7e61fd742c24" />
 
 

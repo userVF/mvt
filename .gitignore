@@ -2,3 +2,4 @@ build/client/assets/*
 build/client/html/*
 build/server/*
 node_modules
+.env
