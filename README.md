@@ -22,8 +22,10 @@ Create triggers
   ```bash
   psql -v ON_ERROR_STOP=ON -U tileset < db/triggers.sql
   ```
+
+Adjust connect
 - Replace `<YOUR_DB_HOST>` placeholder in `.env` file with your own value.
-- Replace `<YOUR DB_PASSWORD>` placeholder in `.env` file with your own value, if your database setting requires password authentication and run:
+- Replace `<YOUR DB_PASSWORD>` placeholder in `.env` file with your own value, if your database setting requires password authentication and change password:
 ```bash
 psql -v ON_ERROR_STOP=ON -U tileset -c "ALTER ROLE tileset WITH PASSWORD '<YOUR DB_PASSWORD>'"
 ```
