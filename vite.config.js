@@ -7,10 +7,13 @@ export default defineConfig(({ command, mode }) => {
 
   const config = {    
     base: env.VITE_STATIC_ORIGIN,
-    plugins: [vue()],
+    plugins: [
+      vue(),
+    ],
     build: {
       chunkSizeWarningLimit: 2000,
       cssCodeSplit: false,
+      emptyOutDir: true,
     },
   }
 

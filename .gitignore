@@ -1,8 +1,4 @@
 .vscode
-build/client/assets/*
-!build/client/assets/.gitkeep
-build/client/html/*
-!build/client/html/.gitkeep
-build/server/*
-!build/server/.gitkeep
+build/*
+!build/.gitkeep
 node_modules

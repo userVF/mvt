@@ -7,8 +7,8 @@ export function createApp() {
   const app = createSSRApp(App)
 
   app.config.errorHandler = (err, instance, info) => {
-    console.log('------------------vue app.errorHandler ', err, instance, info)
+    console.log('vue app.errorHandler ', err, instance, info)
   }
 
-  return { app }
+  return app
 }

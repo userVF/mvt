@@ -16,10 +16,10 @@ export default function(app, _opts, done) {
     let html = rawHtml
       .replace('!--csp--', 
         `<meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self' ${process.env.VITE_STATIC_ORIGIN} *.maplibre.org data: ;
-          script-src ${process.env.VITE_STATIC_ORIGIN} ;
-          style-src ${process.env.VITE_STATIC_ORIGIN} ;
-          img-src data: blob: ${process.env.VITE_STATIC_ORIGIN} ;
+          content="default-src 'self' ${process.env.STATIC_ORIGIN} *.maplibre.org data: ;
+          script-src ${process.env.STATIC_ORIGIN} ;
+          style-src ${process.env.STATIC_ORIGIN} ;
+          img-src data: blob: ${process.env.STATIC_ORIGIN} ;
           child-src blob: ;
           worker-src blob: ;"
         >`

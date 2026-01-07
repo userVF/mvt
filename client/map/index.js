@@ -25,7 +25,7 @@ const createMap = tileSetName => {
       sources: {
         mvt: {
           type: 'vector',
-          tiles: [ `${import.meta.env.VITE_TILE_ORIGIN}/tile/${tileSetName}/{z}/{x}/{y}` ]		
+          tiles: [ `${import.meta.env.VITE_APP_ORIGIN}/tile/${tileSetName}/{z}/{x}/{y}` ]		
         },        
       },     
       layers: getTileLayers(),      
