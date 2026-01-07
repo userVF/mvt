@@ -94,16 +94,9 @@ const sourceSets = {
   ),`, 
 }
 
-export default function(app, opts, done) {
+export default function(app, _opts, done) {
 
   app.decorate('tileset', {
-
-    checkParams({ tilesetName, z, x, y }) {
-      if (!/^\d+$/.test(z) || !/^\d+$/.test(x) || !/^\d+$/.test(y) || !/^[a-z\d]+$/.test(tilesetName)) {
-        return false
-      }
-      return true
-    },
 
     async getSourcesetNames(tilesetName) {
       const client = await app.pg.connect()      
@@ -132,14 +125,11 @@ export default function(app, opts, done) {
     },
 
     getParams({ tilesetName, z, x, y }) {
-      const curZ = parseInt(z)
-      const curX = parseInt(x)
-      const curY = parseInt(y)
-      const minX = originMinX + meterPerTileArr[curZ] * curX
-      const minY = originMaxY - meterPerTileArr[curZ] * curY
-      const maxX = minX + meterPerTileArr[curZ]
-      const maxY = minY - meterPerTileArr[curZ]
-      return [ minX, minY, maxX, maxY, curZ, tilesetName ]
+      const minX = originMinX + meterPerTileArr[z] * x
+      const minY = originMaxY - meterPerTileArr[z] * y
+      const maxX = minX + meterPerTileArr[z]
+      const maxY = minY - meterPerTileArr[z]
+      return [ minX, minY, maxX, maxY, z, tilesetName ]
     },
     
     async getTile(query, params) {
@@ -156,11 +146,18 @@ export default function(app, opts, done) {
 
   })
 
-  app.get('/tile/:tilesetName/:z/:x/:y', async (request, reply) => {
-    const { tilesetName, z, x, y } = request.params
-    if (!app.tileset.checkParams({ tilesetName, z, x, y })) {
-      return
-    }       
+  app.get('/tile/:tilesetName/:z/:x/:y', {
+    schema: { 
+      type: 'object',
+      properties: {
+        tilesetName: { type: 'string', pattern: '^[a-z\\d]+$' },
+        z: { type: 'integer' },
+        x: { type: 'integer' },
+        y: { type: 'integer' },
+      },
+    } 
+  }, async (request, _reply) => {
+    const { tilesetName, z, x, y } = request.params      
     const sourcesetNames = await app.tileset.getSourcesetNames(tilesetName)
     if (!sourcesetNames) {
       return
