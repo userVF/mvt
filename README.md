@@ -14,7 +14,7 @@ Create tables, load data and create triggers
   ```bash
   psql --single-transaction -v ON_ERROR_STOP=ON -U tileset -c '\i db/tables.sql' -c '\i db/data.sql' -c '\i db/triggers.sql'
   ```
-Adjust connectection
+Adjust connection
 - Replace `<YOUR_DB_HOST>` placeholder in `.env` file with your own value.
 - Replace `<YOUR DB_PASSWORD>` placeholder in `.env` file with your own value, if your database setting requires password authentication and change password:
 ```bash
