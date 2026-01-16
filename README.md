@@ -53,7 +53,7 @@ http://localhost:3000
 The map should looks like this:
 <img width="1021" height="594" alt="live-example" src="https://github.com/user-attachments/assets/ce14a4a1-5700-4d8c-8224-2927cb38f972" />
 
-Full example: [Topohub.kz](https://topohub.kz/en#15/43.21826/76.64832{target=_blank})
+Full example: [Topohub.kz](https://topohub.kz/en#15/43.21826/76.64832){:target=_blank}
 
 ## Changed tiles
 Changes in the data are tracked. Based on a specific tileset and zoom range of a layer, the tiles impacted by these changes are calculated.
