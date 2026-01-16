@@ -1,4 +1,4 @@
-This is example of generating, displaying and data change tracking of vector tiles(Mapbox Vector Tile format).
+This is example of generating, displaying and data change tracking of vector tiles (Mapbox Vector Tile format).
 
 ## Prerequisites
 - PostgreSQL with PostGIS
@@ -8,30 +8,30 @@ This is example of generating, displaying and data change tracking of vector til
 
 Initialize database
    ```bash
-   psql -v ON_ERROR_STOP=ON -U postgres < db/init.sql
+   psql --single-transaction -v ON_ERROR_STOP=ON -U postgres -f db/init.sql
    ```
 Create tables
   ```bash
-  psql -v ON_ERROR_STOP=ON -U tileset < db/tables.sql
+  psql --single-transaction -v ON_ERROR_STOP=ON -U tileset -f db/tables.sql
   ```
 Load data
   ```bash
-  psql -v ON_ERROR_STOP=ON -U tileset < db/data.sql
+  psql --single-transaction -v ON_ERROR_STOP=ON -U tileset -f db/data.sql
   ```
 Create triggers
   ```bash
-  psql -v ON_ERROR_STOP=ON -U tileset < db/triggers.sql
+  psql --single-transaction -v ON_ERROR_STOP=ON -U tileset -f db/triggers.sql
   ```
 
-Adjust connect
+Adjust connectection
 - Replace `<YOUR_DB_HOST>` placeholder in `.env` file with your own value.
 - Replace `<YOUR DB_PASSWORD>` placeholder in `.env` file with your own value, if your database setting requires password authentication and change password:
 ```bash
-psql -v ON_ERROR_STOP=ON -U tileset -c "ALTER ROLE tileset WITH PASSWORD '<YOUR DB_PASSWORD>'"
+psql -U tileset -c "ALTER ROLE tileset WITH PASSWORD '<YOUR DB_PASSWORD>'"
 ```
 
 The data in the database is stored as follows:   
-<img width="1058" height="595" alt="db" src="https://github.com/user-attachments/assets/2a0d9c5e-69c5-441f-a751-5d925e06678a" />
+<img width="1058" height="595" alt="db" src="https://github.com/user-attachments/assets/e16c8537-c968-4ae7-a834-be79c3cf8495" />
 
 ## Code setup
 
@@ -44,8 +44,7 @@ Build bundles
 npm run build
 ```
 Relationships between CTEs and style layers:
-<img width="1058" height="595" alt="code" src="https://github.com/user-attachments/assets/091aa6bd-ac45-4dc8-a147-402397002462" />
-
+<img width="1058" height="595" alt="code" src="https://github.com/user-attachments/assets/0e3b0edf-8d4f-4791-9c4d-74d0d80b8b60" />
 
 ## Live example
 Run application server
@@ -61,7 +60,9 @@ Open in a browser
 http://localhost:3000
 ```
 The map should looks like this:
-<img width="1024" height="597" alt="live-example" src="https://github.com/user-attachments/assets/2fe5e6c7-0cdc-4a48-9a20-29c216285644" />
+<img width="1021" height="594" alt="live-example" src="https://github.com/user-attachments/assets/ce14a4a1-5700-4d8c-8224-2927cb38f972" />
+
+## Full example [Topohub.kz](https://topohub.kz/en#15/43.21826/76.64832)
 
 ## Changed tiles
 Changes in the data are tracked. Based on a specific tileset and zoom range of a layer, the tiles impacted by these changes are calculated.
